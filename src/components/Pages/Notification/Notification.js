@@ -63,7 +63,7 @@ const Notificaiton = () => {
           break;
       }
       if(name){
-      sentence = name.trim() + " " + notification?.notification_text;}
+      sentence = name?.trim() + " " + notification?.notification_text;}
 
       date =
         format(new Date(notification?.createdAt), "MMM dd, yyyy") +

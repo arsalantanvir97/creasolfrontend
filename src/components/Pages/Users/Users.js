@@ -19,7 +19,7 @@ const Users = () => {
 
   const getUsers = (perPage = 1000, page = 1) => {
     client(
-      `/api/users?perPage=${perPage}&page=${page}$q=${q}`
+      `/api/users?perPage=${perPage}&page=${page}&q=${q}`
     ).then((res) => {
       setUsers(res);
     });
