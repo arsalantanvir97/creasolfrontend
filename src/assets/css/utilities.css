@@ -1,0 +1,74 @@
+/*******************
+	General Calsses Start  
+***********************************/
+.mx-n2 {margin-right: -0.5rem !important;  margin-left: -0.5rem !important;}
+
+a {outline: none !important; text-decoration: none;}
+
+.mt-6 {margin-top: 4rem !important;}
+.mt-7 {margin-top: 5rem !important;}
+.mt-8 {margin-top: 6rem !important;}
+
+.mb-6 {margin-bottom: 4rem !important;}
+.mb-7 {margin-bottom: 5rem !important;}
+.mb-8 {margin-bottom: 6rem !important;}
+
+.p-lg-6 {padding: 4rem;}
+
+.h-150 {height:150px;}
+.height-500 {height: 500px !important;}
+.height-390 {height: 390px !important;}
+.height-450 {height: 450px !important;}
+
+.shadow-sm {box-shadow: 0 10px 40px 0 rgb(165 165 165 / 8%), 0 2px 9px 0 rgb(6 6 6 / 15%)  !important;}
+
+.border {border-color: #E2E2E2 !important;}
+.border-top {border-top: 1px solid #E2E2E2 !important;}
+.border-bottom {border-bottom: 1px solid #E2E2E2 !important;}
+.border-orange {border: 1px solid #FF3F00;}
+
+.rounded-5 {border-radius: 5px;}
+.rounded-10 {border-radius: 10px;}
+.rounded-20 {border-radius: 20px;}
+.rounded-30 {border-radius: 30px;}
+
+.bg-light {background: #F9F9F9 !important;}
+.bg-light2 {background:#EEEEEE;}
+.bg-purple {background-color: #7B00FF !important;}
+.bg-purple1 {background-color: #5F19AB !important;}
+.bg-purple2 {background-color: #9B3FFD !important;}
+.bg-purple3 {background-color: #A566C5 !important;}
+.bg-gray {background-color: #F7F7F7 !important;}
+
+.fw-light {font-weight: 300 !important;}
+.fw-regular {font-weight: 400 !important;}
+.fw-medium {font-weight: 500 !important;}
+.fw-semibold {font-weight: 600 !important;}
+.fw-bold {font-weight: 700 !important;}
+
+.ff-helve {font-family: 'Helvetica';}
+.ff-helve-normal {font-family: 'Helvetica-Normal';}
+.ff-helve-bold {font-family: 'Helvetica-Bold';}
+.ff-rubik {font-family: 'Rubik', sans-serif;}
+
+.text-purple {color:#602080 !important;}
+.text-orange {color:#FF3F00 !important;}
+.text-yellow {color:#FFB300;}
+.text-green {color:#05c954 !important;}
+.text-danger {color: #FF1625 !important;}
+.text-seegreen {color: #04D4B4 !important;}
+.text-gray {color: #666666 !important;}
+.text-lightred {color: #DC0D0D !important;}
+.text-dark {color: #333333 !important;}
+
+
+.fs-14{ font-size: 14px !important;}
+.fs-16{ font-size: 16px !important;}
+.fs-18 {font-size: calc(14px + (18 - 14) * ((100vw - 320px) / (1920 - 320)));}
+.fs-20 {font-size: calc(16px + (20 - 16) * ((100vw - 320px) / (1920 - 320)));}
+.fs-22 {font-size: calc(18px + (22 - 18) * ((100vw - 320px) / (1920 - 320))) !important;}
+.fs-35 {font-size: calc(24px + (35 - 24) * ((100vw - 320px) / (1920 - 320))) !important;}
+.fs-60 {font-size: calc(34px + (60 - 34) * ((100vw - 320px) / (1920 - 320))) !important;}
+/*******************
+	General Calsses End   
+***********************************/
