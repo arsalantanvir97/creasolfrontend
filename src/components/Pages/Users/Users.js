@@ -6,6 +6,8 @@ import { client } from "utils/utils";
 
 const Users = () => {
   const [users, setUsers] = useState(null);
+  const [q, setq] = useState('');
+
   const navigate = useNavigate();
   const { user } = useSelector(userSelector);
   const isAdmin = user && user.is_admin;
@@ -13,13 +15,11 @@ const Users = () => {
   useEffect(() => {
     if (!isAdmin) navigate("/");
     getUsers();
-  }, [isAdmin, navigate]);
+  }, [isAdmin, navigate,q]);
 
-  const getUsers = (perPage = 10, page = 1, filter) => {
+  const getUsers = (perPage = 1000, page = 1) => {
     client(
-      `/api/users?perPage=${perPage}&page=${page}${
-        filter ? "&q=" + filter : ""
-      }`
+      `/api/users?perPage=${perPage}&page=${page}$q=${q}`
     ).then((res) => {
       setUsers(res);
     });
@@ -45,6 +45,10 @@ const Users = () => {
                       type="search"
                       className="form-control"
                       placeholder="Search"
+                      value={q}
+                      onChange={(e)=>{
+                        setq(e.target.value)
+                      }}
                     />
                   </div>
                 </div>

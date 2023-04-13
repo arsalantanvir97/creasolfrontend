@@ -109,13 +109,13 @@ const AdminOrdersScreen = ({ isAdmin }) => {
             <div className="row align-items-end d-flex mb-3">
               <div className="col-12">
                 <div className="dataTables_filter d-flex justify-content-start flex-shrink-1">
-                  <div className="search-wrap flex-grow-1">
+                  {/* <div className="search-wrap flex-grow-1">
                     <input
                       type="search"
                       className="form-control"
                       placeholder="Search"
                     />
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>

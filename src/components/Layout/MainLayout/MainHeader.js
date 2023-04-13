@@ -14,9 +14,11 @@ const MainHeader = () => {
 
   const dispatch = useDispatch();
   const { user } = useSelector(userSelector);
+  console.log('image',user.image)
   // console.log('usser',user)
   const username = user && `${user.first_name} ${user.last_name}`;
-  const userImage = user && user.image 
+  const userImage =user && user?.image?.includes('undefined') ? null : user.image 
+  console.log('userImage',userImage)
     // const userImage = OnlineAvatar
 
   const userType = user && (Boolean(user.is_admin) ? "admin" : "user");
@@ -46,52 +48,52 @@ const MainHeader = () => {
   };
 
   const NotificationLinks = () => {
-    return notifications.length ? notifications.map((notification) => {
+    return notifications?.length>0 ? notifications?.map((notification) => {
       let name, sentence, url, date;
-      switch (notification.notification_type) {
+      switch (notification?.notification_type) {
         case "Purchase":
           // only shows to admin
           name =
-            notification.user.first_name + " " + notification.user.last_name;
-          url = "/order/" + notification.order;
+            notification?.user?.first_name + " " + notification?.user?.last_name;
+          url = "/order/" + notification?.order;
           break;
         case "PostUpdate":
           if (userType === "admin") {
             name =
-              notification.user.first_name + " " + notification.user.last_name;
+              notification?.user?.first_name + " " + notification?.user?.last_name;
           } else {
             name =
-              notification.created_by.first_name +
+              notification?.created_by?.first_name +
               " " +
-              notification.created_by.last_name;
+              notification?.created_by?.last_name;
           }
-          url = `/post/edit/${notification.order}/${notification.post}`;
+          url = `/post/edit/${notification?.order}/${notification?.post}`;
           break;
         case "Comment":
           if (userType === "admin") {
             name =
-              notification.user.first_name + " " + notification.user.last_name;
+              notification?.user?.first_name + " " + notification?.user?.last_name;
           } else {
             name =
-              notification.created_by.first_name +
+              notification?.created_by?.first_name +
               " " +
-              notification.created_by.last_name;
+              notification?.created_by?.last_name;
           }
-          url = `/post/edit/${notification.order}/${notification.post}`;
+          url = `/post/edit/${notification?.order}/${notification?.post}`;
           break;
         default:
           break;
       }
       console.log('name',name)
       if(name){
-      sentence = name.trim() + " " + notification.notification_text;}
+      sentence = name.trim() + " " + notification?.notification_text;}
 
       date =
-        format(new Date(notification.createdAt), "MMM dd, yyyy") +
+        format(new Date(notification?.createdAt), "MMM dd, yyyy") +
         " at " +
-        format(new Date(notification.createdAt), "hh:mm a");
+        format(new Date(notification?.createdAt), "hh:mm a");
       return (
-        <Link to={url} key={notification._id}>
+        <Link to={url} key={notification?._id}>
           <div className="media d-flex white-space-normal">
             <div className="media-left flex-shrink-0 align-self-top">
               <i className="far fa-bell"></i>{" "}

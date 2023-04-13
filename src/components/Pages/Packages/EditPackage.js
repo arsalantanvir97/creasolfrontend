@@ -89,7 +89,7 @@ duration,
             </div>
             <div className="mb-3">
               <label className="fs-14 fw-medium text-dark ms-4 ff-helve-normal">
-                Duration
+                Duration(Month)
               </label>
               <input
                 type="text"
