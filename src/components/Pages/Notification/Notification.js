@@ -26,51 +26,51 @@ const Notificaiton = () => {
   };
 
   const NotificationLinks = () => {
-    return notifications.map((notification) => {
+    return notifications?.length>0 && notifications?.map((notification) => {
       let name, sentence, url, date;
-      switch (notification.notification_type) {
+      switch (notification?.notification_type) {
         case "Purchase":
           // only shows to admin
           name =
-            notification.user.first_name + " " + notification.user.last_name;
-          url = "/order/" + notification.order;
+            notification?.user?.first_name + " " + notification?.user?.last_name;
+          url = "/order/" + notification?.order;
           break;
         case "PostUpdate":
           if (userType === "admin") {
             name =
-              notification.user.first_name + " " + notification.user.last_name;
+              notification?.user?.first_name + " " + notification?.user?.last_name;
           } else {
             name =
-              notification.created_by.first_name +
+              notification?.created_by?.first_name +
               " " +
-              notification.created_by.last_name;
+              notification?.created_by?.last_name;
           }
-          url = `/post/edit/${notification.order}/${notification.post}`;
+          url = `/post/edit/${notification?.order}/${notification?.post}`;
           break;
         case "Comment":
           if (userType === "admin") {
             name =
-              notification.user.first_name + " " + notification.user.last_name;
+              notification?.user?.first_name + " " + notification?.user?.last_name;
           } else {
             name =
-              notification.created_by.first_name +
+              notification?.created_by?.first_name +
               " " +
-              notification.created_by.last_name;
+              notification?.created_by?.last_name;
           }
-          url = `/post/edit/${notification.order}/${notification.post}`;
+          url = `/post/edit/${notification?.order}/${notification?.post}`;
           break;
         default:
           break;
       }
       if(name){
-      sentence = name.trim() + " " + notification.notification_text;}
+      sentence = name.trim() + " " + notification?.notification_text;}
 
       date =
-        format(new Date(notification.createdAt), "MMM dd, yyyy") +
+        format(new Date(notification?.createdAt), "MMM dd, yyyy") +
         " at " +
-        format(new Date(notification.createdAt), "hh:mm a");
+        format(new Date(notification?.createdAt), "hh:mm a");
       return (
-        <Link to={url} key={notification._id}>
+        <Link to={url} key={notification?._id}>
           <div className="card">
             <div className="media d-flex">
               <div className="media-left flex-shrink-0 align-self-top">
