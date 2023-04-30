@@ -1,3 +1,4 @@
+import moment from "moment";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -78,7 +79,9 @@ const AdminOrdersScreen = ({ isAdmin }) => {
             <td>{order.medium}</td>
             <td>{order.payment_type}</td>
             <td>{order.pkg_name}</td>
-            <td>{order.status}</td>
+                        {/* <td>{order.status}</td> */}
+
+            <td>{moment(order.form_filltime)>moment()? order.status: 'InActive'}</td>
             <td>
               <Link to={`/posts/${order._id}`}>
                 <span className="status active">View</span>

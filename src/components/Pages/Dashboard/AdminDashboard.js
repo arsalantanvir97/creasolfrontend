@@ -88,7 +88,6 @@ const AdminDashboard = () => {
     const {
       data: { graph, packageData },
     } = await client(`/api/dashboard?year=${filter.year}`);
-    debugger;
     const packageLabels = packageData.map((pkg) => pkg._id);
     const packageCount = packageData.map((pkg) => pkg.count);
 

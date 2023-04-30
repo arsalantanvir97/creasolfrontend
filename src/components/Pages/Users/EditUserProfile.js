@@ -103,6 +103,9 @@ const EditUserProfile = () => {
         },
       }).then((res) => {
         if (res.status === 200) toast(res.data.message, toastConstant);
+      }).catch((err)=>{
+        toast("Email not found", { type: 'error' });
+
       });
     }
   };

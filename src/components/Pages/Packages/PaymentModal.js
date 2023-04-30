@@ -124,7 +124,6 @@ const PaymentModal = ({ show, handleClose }) => {
   //   const handleShow = () => setShow(true);
 
   const handleToken = (token) => {
-    debugger;
     const body = {
       token,
       product,

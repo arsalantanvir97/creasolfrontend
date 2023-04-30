@@ -8,6 +8,8 @@ import { API_PATH } from "constants";
 import { format } from "date-fns";
 import { Editor } from "@tinymce/tinymce-react";
 import { Parser } from "html-to-react";
+import OnlineAvatar from "assets/images/online-avatar.png";
+
 
 // Getting Images
 import img1 from "assets/images/img-1.png";
@@ -24,6 +26,9 @@ const AddEditPost = ({ mode, OrderId, PostId }) => {
   let { user } = useSelector(userSelector);
   user = user === null ? {} : user;
   const isAdmin = user && user.is_admin;
+  console.log('user?.image',user?.image)
+  const userImage =user && user?.image?.includes('undefined') ? null : user.image 
+
   const isAdding = mode === "Add";
   const [isLoading, setIsLoading] = useState(false);
   const [post, setPost] = useState();
@@ -434,7 +439,7 @@ const AddEditPost = ({ mode, OrderId, PostId }) => {
               : ""}
             <div className="commentSection d-flex pb-3 mb-3">
               <div className="commentImg flex-shrink-0 me-3">
-                <img src={user.image} alt="" className="img-fluid" />
+                <img src={userImage ? `${userImage}`: OnlineAvatar} alt="" className="img-fluid" />
               </div>
               <div className="commentContect flex-grow-1">
                 <div className="mb-3">
@@ -443,6 +448,7 @@ const AddEditPost = ({ mode, OrderId, PostId }) => {
                   </h6>
                 </div>
                 <div className="mb-3">
+                  {status == 'Approved' ? null:
                   <textarea
                     className="form-control"
                     rows="5"
@@ -450,7 +456,7 @@ const AddEditPost = ({ mode, OrderId, PostId }) => {
                     disabled={status == 'Approved' && true}
                     value={comment}
                     onChange={(e) => setComment(e.target.value)}
-                  ></textarea>
+                  ></textarea>}
                 </div>
                 {isAdmin==true? null :!isAdmin && status == 'Approved' || status == 'Rejected with Comments' ? null :
                   <button className="btn btn-primary" onClick={HandleComment}>

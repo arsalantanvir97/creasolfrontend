@@ -23,7 +23,10 @@ const PasswordRecovery = () => {
             },
           }).then((res) => {
             if (res.status === 200) setStep("code");
-          });
+          }).catch((err)=>{
+            toast("Email not found", { type: 'error' });
+
+          })
         }
         break;
       case "code":

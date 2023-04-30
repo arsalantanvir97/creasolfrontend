@@ -80,7 +80,6 @@ const AdminPaymentLogs = () => {
     const {
       data: { graph },
     } = await client(`/api/paymentloggs?year=${filter.year}`);
-    debugger;
     setUserChart({
       ...userChart,
       datasets: [{ ...userChart.datasets, data: graph }],

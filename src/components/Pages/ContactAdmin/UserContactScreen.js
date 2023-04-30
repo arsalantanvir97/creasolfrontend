@@ -15,7 +15,6 @@ const UserContactScreen = () => {
   const onClickHandler = (e) => {
     e.preventDefault();
     try {
-      debugger;
       if (subject && description) {
         client("/api/feedback", {
           method: "POST",
