@@ -73,7 +73,6 @@ const Sidebar = () => {
                 <span className="menu-title">Payment Log</span>
               </Link>
             </li>
-            {isAdmin ? null:
             <li
               className={`nav-item ${
                 pageName === "customer-feedback" ? "active" : ""
@@ -83,7 +82,7 @@ const Sidebar = () => {
                 <img src={ContactAdminIcon} alt="" className="img-fluid me-2" />
                 <span className="menu-title">Contact Admin</span>
               </Link>
-            </li>}
+            </li>
           </ul>
         </div>
       </div>
