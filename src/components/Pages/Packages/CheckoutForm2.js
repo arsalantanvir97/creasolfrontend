@@ -2,19 +2,26 @@ import { CardElement, PaymentElement } from '@stripe/react-stripe-js'
 import { useEffect, useState } from 'react'
 import { useStripe, useElements } from '@stripe/react-stripe-js'
 import { client } from 'utils/utils'
-import { useSelector } from 'react-redux'
-import { userSelector } from 'features/auth/authSlice'
+import axios from 'axios'
+import { API_PATH } from 'constants'
+import { toast } from 'react-toastify'
 
-export default function CheckoutForm({ packageID, onSuccess }) {
+export default function CheckoutForm2({
+  Navigate,
+  firstName,
+  lastName,
+  email,
+  phone,
+  password,
+  packageID,
+  onSuccess,
+}) {
   const stripe = useStripe()
   const elements = useElements()
-
+  console.log('packageID', packageID, firstName, lastName, email)
   const [message, setMessage] = useState(null)
   const [isProcessing, setIsProcessing] = useState(false)
   const [recurring, setRecurring] = useState(false)
-  const { user } = useSelector(userSelector)
-  const isAdmin = user && user.is_admin
-  const email = user && user.email
 
   const createSubscription = async () => {
     setIsProcessing(true)
@@ -23,24 +30,46 @@ export default function CheckoutForm({ packageID, onSuccess }) {
         card: elements.getElement('card'),
         type: 'card',
         billing_details: {
-          name: `${user.first_name} ${user.last_name}`,
+          name: `${firstName} ${lastName}`,
           email,
         },
       })
+      console.log('paymentMethod', paymentMethod)
       if (paymentMethod.error) {
         setMessage(paymentMethod.error.message)
         setIsProcessing(false)
         return
       }
-      const { data } = await client('/api/order/subscribe', {
-        method: 'POST',
-        data: {
-          packageID,
-          paymentMethod: paymentMethod.paymentMethod.id,
-        },
-      })
+      const { data } = await axios(
+        `${API_PATH}/api/order/usersignupsubscribe`,
+        {
+          method: 'POST',
+          data: {
+            packageID,
+            paymentMethod: paymentMethod.paymentMethod.id,
+            first_name: firstName,
+            last_name: lastName,
+            email,
+            phone,
+            password,
+          },
+        }
+      )
+      localStorage.removeItem('firstName')
+      localStorage.removeItem('lastName')
+      localStorage.removeItem('email')
+      localStorage.removeItem('phone')
+      localStorage.removeItem('password')
+
       // if (!response.ok) return alert("Payment unsuccessful!");
       const confirm = await stripe.confirmCardPayment(data.clientSecret)
+      toast(
+        'Registered Successfully!.You have subscribed a package, Please fill the form within 24 hours.',
+        'success'
+      )
+
+      Navigate(`/`)
+
       if (confirm.error) return alert('Payment unsuccessful!')
       onSuccess()
     } catch (err) {
@@ -72,7 +101,7 @@ export default function CheckoutForm({ packageID, onSuccess }) {
       // card: elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        return_url: `${window.location.origin}/user/packages`,
+        return_url: `${window.location.origin}/user/Signup/${packageID}`,
         // return_url: `http://localhost:4001/api/payment`,
       },
     })
