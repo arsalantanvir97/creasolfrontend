@@ -28,8 +28,18 @@ export const loginUser = createAsyncThunk(
         : ''
       const data = await response.data
       if (response.status === 200) {
+        const userdata = {
+          first_name: data.first_name,
+          last_name: data.last_name,
+          email: data.email,
+          phone: data.phone,
+          fblink: data.fblink,
+          instalink: data.instalink,
+          address: data.address,
+          image: data.image,
+        }
         localStorage.setItem('token', data.token)
-        localStorage.setItem('user', data)
+        localStorage.setItem('user', JSON.stringify(userdata))
 
         return { ...response }
       } else {
@@ -62,8 +72,19 @@ export const registerUser = createAsyncThunk(
         : ''
       const data = await response.data
       if (response.status === 201) {
+        const userdata = {
+          first_name: data.first_name,
+          last_name: data.last_name,
+          email: data.email,
+          phone: data.phone,
+          fblink: data.fblink,
+          instalink: data.instalink,
+          address: data.address,
+          image: data.image,
+        }
+
         localStorage.setItem('token', data.token)
-        localStorage.setItem('user', data)
+        localStorage.setItem('user', JSON.stringify(userdata))
 
         return { ...response }
       } else {
