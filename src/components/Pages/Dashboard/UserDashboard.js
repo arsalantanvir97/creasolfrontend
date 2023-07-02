@@ -186,25 +186,25 @@ const UserDashboard = () => {
                             </h6>
                           </div>
                           <div className='dashboardPackageBody'>
-                            {userpackage == 0 ? (
+                            {/* {userpackage == 0 ? (
                               <h3
                                 className='fs-35 text-dark fw-bold mb-0 ff-helve'
                                 id='demo'
                               >
                                 N/A
                               </h3>
-                            ) : (
-                              <h3
-                                className='fs-35 text-dark fw-bold mb-0 ff-helve'
-                                ref={TimerElem?.current}
-                                id='demo'
-                              >
-                                {typeof minnute === 'number' &&
-                                !Number.isNaN(minnute)
-                                  ? hour + ' : ' + minnute + ' : ' + time
-                                  : 'Expired'}
-                              </h3>
-                            )}
+                            ) : ( */}
+                            <h3
+                              className='fs-35 text-dark fw-bold mb-0 ff-helve'
+                              ref={TimerElem?.current}
+                              id='demo'
+                            >
+                              {typeof minnute === 'number' &&
+                              !Number.isNaN(minnute)
+                                ? hour + ' : ' + minnute + ' : ' + time
+                                : 'Expired'}
+                            </h3>
+                            {/* )} */}
                           </div>
                         </div>
                       </Link>
