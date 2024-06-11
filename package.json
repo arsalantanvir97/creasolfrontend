@@ -2,7 +2,6 @@
   "name": "creasol",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://creasoldigital.com/user",
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.1",
     "@stripe/react-stripe-js": "^1.16.2",

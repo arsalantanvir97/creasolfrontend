@@ -3,19 +3,17 @@ export const stateConstants = {
   isSuccess: false,
   message: "",
   error: "",
-};
+}
 
-
-let API_PATH2=''
+let API_PATH2 = ""
 // if (window.location.hostname == "localhost") {
 //   API_PATH2 = "https://localhost:4001";
- 
+
 // } else {
-  API_PATH2 = "https://creasoldigital.com:4001";
- 
+API_PATH2 = "https://creasoldigital-api.onrender.com"
+
 // }
 
- 
 export const API_PATH = API_PATH2
 
 export const toastConstant = {
@@ -27,7 +25,7 @@ export const toastConstant = {
   draggable: true,
   progress: undefined,
   theme: "light",
-};
+}
 
 export const STRIPE_PK =
-  "pk_test_51MPtXPItbk5K5BY48SdqRcO2pO9iyolrFmdxt3P17oJiSzIFLoXsBOSTaWnyrphXBs3NvzTcmY7RNlbV814fYdNE00MbzQbNco";
+  "pk_test_51MPtXPItbk5K5BY48SdqRcO2pO9iyolrFmdxt3P17oJiSzIFLoXsBOSTaWnyrphXBs3NvzTcmY7RNlbV814fYdNE00MbzQbNco"
