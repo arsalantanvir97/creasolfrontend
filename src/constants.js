@@ -6,13 +6,11 @@ export const stateConstants = {
 }
 
 let API_PATH2 = ""
-// if (window.location.hostname == "localhost") {
-//   API_PATH2 = "https://localhost:4001";
-
-// } else {
-API_PATH2 = "https://creasoldigital-api.onrender.com"
-
-// }
+if (window.location.hostname == "localhost") {
+  API_PATH2 = "http://localhost:4001"
+} else {
+  API_PATH2 = "https://creasoldigital-api.onrender.com"
+}
 
 export const API_PATH = API_PATH2
 

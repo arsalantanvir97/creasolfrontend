@@ -1,23 +1,27 @@
-import { useState } from "react";
-import { FaRegEnvelope, FaKey, FaEyeSlash, FaEye } from "react-icons/fa";
-import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { loginUser } from "features/auth/authSlice";
-import { toast } from "react-toastify";
+import { useState } from "react"
+import { FaRegEnvelope, FaKey, FaEyeSlash, FaEye } from "react-icons/fa"
+import { Link } from "react-router-dom"
+import { useDispatch } from "react-redux"
+import { loginUser } from "features/auth/authSlice"
+import { toast } from "react-toastify"
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
-  const dispatch = useDispatch();
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [showPassword, setShowPassword] = useState(false)
+  const [loading, setloading] = useState(false)
+
+  const dispatch = useDispatch()
   const onLoginSubmit = async (e) => {
-    e.preventDefault();
+    setloading(true)
+    e.preventDefault()
     if (email && password) {
-      dispatch(loginUser({ email, password }));
+      dispatch(loginUser({ email, password }))
     } else {
-      toast("Please fill email & password", { type: 'error' });
+      toast("Please fill email & password", { type: "error" })
     }
-  };
+    setloading(false)
+  }
   return (
     <div className="login-card bg-img p-0">
       <div className="right">
@@ -50,8 +54,8 @@ const Login = () => {
               <button
                 className="btn view-btn position-absolute"
                 onClick={(e) => {
-                  e.preventDefault();
-                  setShowPassword((prevState) => !prevState);
+                  e.preventDefault()
+                  setShowPassword((prevState) => !prevState)
                 }}
               >
                 {showPassword ? <FaEye /> : <FaEyeSlash />}
@@ -61,12 +65,23 @@ const Login = () => {
           <div className="form-group mt-3 mb-0">
             <div className="d-flex align-items-center justify-content-between">
               <div className="form-group text-center mb-0">
-                <button
-                  type="sumit"
-                  className="btn btn-primary btn-login fw-bold"
-                >
-                  Login
-                </button>
+                {loading ? (
+                  <div style={{ textAlign: "center" }}>
+                    <i className="fas fa-spinner fa-pulse"></i>
+
+                    <p style={{ fontSize: 17 }}>
+                      It may take around 50 seconds while signing up or logging
+                      in for the first time...
+                    </p>
+                  </div>
+                ) : (
+                  <button
+                    type="sumit"
+                    className="btn btn-primary btn-login fw-bold"
+                  >
+                    Login
+                  </button>
+                )}
               </div>
               <div className="forgot-pass">
                 <h6 className="ff-helve fs-14 fw-medium text-dark mb-0 d-flex justify-content-end">
@@ -92,7 +107,7 @@ const Login = () => {
         </form>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login

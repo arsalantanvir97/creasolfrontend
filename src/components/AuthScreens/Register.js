@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState } from "react"
 import {
   FaRegEnvelope,
   FaKey,
@@ -6,55 +6,59 @@ import {
   FaEye,
   FaUser,
   FaPhone,
-} from "react-icons/fa";
-import { Link, Navigate, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { registerUser } from "features/auth/authSlice";
-import { ToastContainer, toast } from "react-toastify";
-import { toastConstant } from "constants";
-import { client } from "utils/utils";
+} from "react-icons/fa"
+import { Link, Navigate, useNavigate } from "react-router-dom"
+import { useDispatch, useSelector } from "react-redux"
+import { registerUser } from "features/auth/authSlice"
+import { ToastContainer, toast } from "react-toastify"
+import { toastConstant } from "constants"
+import { client } from "utils/utils"
 
 const Register = () => {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [showPassword, setShowPassword] = useState("");
-  const [showConfirmPassword, setShowConfirmPassword] = useState("");
-  const dispatch = useDispatch();
+  const [firstName, setFirstName] = useState("")
+  const [lastName, setLastName] = useState("")
+  const [email, setEmail] = useState("")
+  const [phone, setPhone] = useState("")
+  const [password, setPassword] = useState("")
+  const [confirmPassword, setConfirmPassword] = useState("")
+  const [showPassword, setShowPassword] = useState("")
+  const [showConfirmPassword, setShowConfirmPassword] = useState("")
+  const [loading, setloading] = useState(false)
+
+  const dispatch = useDispatch()
   //   const state = useSelector(userSelector);
-  const user = useSelector((state) => state.user);
+  const user = useSelector((state) => state.user)
 
-  const Navigate = useNavigate();
+  const Navigate = useNavigate()
 
-  window.client = client;
+  window.client = client
 
   const onRegisterSubmit = (e) => {
-    e.preventDefault();
-    if(password !==confirmPassword){
+    setloading(true)
+    e.preventDefault()
+    if (password !== confirmPassword) {
       toast("👤 Password don't match", {
         ...toastConstant,
-       
-      });
-    }else{
-    const data = {
-      first_name: firstName,
-      last_name: lastName,
-      email,
-      phone,
-      password,
-    };
-    dispatch(registerUser(data)).then((request) => {
-      toast("👤 Registration success!", {
-        ...toastConstant,
-        onClose: () => {
-          Navigate("/");
-        },
-      });
-    });}
-  };
+      })
+    } else {
+      const data = {
+        first_name: firstName,
+        last_name: lastName,
+        email,
+        phone,
+        password,
+      }
+      dispatch(registerUser(data)).then((request) => {
+        toast("👤 Registration success!", {
+          ...toastConstant,
+          onClose: () => {
+            Navigate("/")
+          },
+        })
+      })
+    }
+    setloading(false)
+  }
 
   return (
     <div className="login-card bg-img p-0">
@@ -124,8 +128,8 @@ const Register = () => {
               <button
                 className="btn view-btn position-absolute"
                 onClick={(e) => {
-                  e.preventDefault();
-                  setShowPassword((prevState) => !prevState);
+                  e.preventDefault()
+                  setShowPassword((prevState) => !prevState)
                 }}
               >
                 {showPassword ? <FaEye /> : <FaEyeSlash />}
@@ -149,8 +153,8 @@ const Register = () => {
               <button
                 className="btn view-btn position-absolute"
                 onClick={(e) => {
-                  e.preventDefault();
-                  setShowConfirmPassword((prevState) => !prevState);
+                  e.preventDefault()
+                  setShowConfirmPassword((prevState) => !prevState)
                 }}
               >
                 {showConfirmPassword ? <FaEye /> : <FaEyeSlash />}
@@ -160,12 +164,23 @@ const Register = () => {
           <div className="form-group mt-3 mb-0">
             <div className="d-flex align-items-center justify-content-between">
               <div className="form-group text-center mb-0">
-                <button
-                  type="sumit"
-                  className="btn btn-primary btn-login fw-bold"
-                >
-                  Register
-                </button>
+                {loading ? (
+                  <div style={{ textAlign: "center" }}>
+                    <i className="fas fa-spinner fa-pulse"></i>
+
+                    <p style={{ fontSize: 17 }}>
+                      It may take around 50 seconds while signing up or logging
+                      in for the first time...
+                    </p>
+                  </div>
+                ) : (
+                  <button
+                    type="sumit"
+                    className="btn btn-primary btn-login fw-bold"
+                  >
+                    Register
+                  </button>
+                )}
                 <ToastContainer />
               </div>
               <div className="forgot-pass">
@@ -189,7 +204,7 @@ const Register = () => {
         </form>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Register;
+export default Register
